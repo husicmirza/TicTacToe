@@ -99,43 +99,43 @@ def replay():
     else:
         return False
 
-#Game
-while True:
-    print('Welcome to Tic Tac Toe!')
-    board=['#',' ',' ',' ',' ',' ',' ',' ',' ',' ',]
-    player1,player2=player_input()
-    display_board(board)
-    
-    if choose_first()=='2':
-        print('Player 2 goes first!')
-        x=player1
-        player1=player2
-        player2=x
-    else:
-        print('Player 1 goes first!')
-
-        
-    while not full_board_check(board):
-        print('Player {} turn'.format(player1))
-        player_one_choice=player_choice(board)
-        place_marker(board,player1,player_one_choice)
+if __name__=='__main__':
+    while True:
+        print('Welcome to Tic Tac Toe!')
+        board=['#',' ',' ',' ',' ',' ',' ',' ',' ',' ',]
+        player1,player2=player_input()
         display_board(board)
-        if win_check(board,player1):
-            break
-       
-        if full_board_check(board):
-            print('Result is even!')
+
+        if choose_first()=='2':
+            print('Player 2 goes first!')
+            x=player1
+            player1=player2
+            player2=x
+        else:
+            print('Player 1 goes first!')
+
+
+        while not full_board_check(board):
+            print('Player {} turn'.format(player1))
+            player_one_choice=player_choice(board)
+            place_marker(board,player1,player_one_choice)
+            display_board(board)
+            if win_check(board,player1):
+                break
+
+            if full_board_check(board):
+                print('Result is even!')
+                continue
+
+            print('Player {} turn'.format(player2))    
+            player_two_choice=player_choice(board)
+            place_marker(board,player2,player_two_choice)
+            display_board(board)
+            if win_check(board,player2):
+                break
+
+
+        if not replay():
+            quit()
+        else:
             continue
-        
-        print('Player {} turn'.format(player2))    
-        player_two_choice=player_choice(board)
-        place_marker(board,player2,player_two_choice)
-        display_board(board)
-        if win_check(board,player2):
-            break
-
-
-    if not replay():
-        quit()
-    else:
-        continue
